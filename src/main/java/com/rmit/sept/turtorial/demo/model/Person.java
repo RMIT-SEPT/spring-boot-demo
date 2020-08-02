@@ -1,7 +1,11 @@
 package com.rmit.sept.turtorial.demo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.*;
 import java.util.Date;
+
 
 
 @Entity
@@ -9,11 +13,15 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+   @NotBlank(message = "Person name is required")
     private String name;
-    private String bookIdentifier;
+   @Size(min=4,max =5, message = "please enter 4 to 5 characters")
+    private String personIdentifier;
+   @NotBlank(message = "desc is required")
     private String desc;
-
+    @JsonFormat(pattern ="yyyy-mm-dd")
     private Date created_At;
+    @JsonFormat(pattern ="yyyy-mm-dd")
     private Date updated_At;
 
     public Person() {
@@ -36,11 +44,11 @@ public class Person {
     }
 
     public String getBookIdentifier() {
-        return bookIdentifier;
+        return personIdentifier;
     }
 
     public void setBookIdentifier(String bookIdentifier) {
-        this.bookIdentifier = bookIdentifier;
+        this.personIdentifier = bookIdentifier;
     }
 
     public String getDesc() {
