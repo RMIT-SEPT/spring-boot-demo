@@ -37,22 +37,4 @@ public class PersonController {
         return new ResponseEntity<Person>(person, HttpStatus.CREATED);
     }
 }
-/*
-1
-public ResponseEntity<Person> createNewPerson(@RequestBody Person person) {
-
-        Person person1 = personService.saveOrUpdatePerson(person);
-        return new ResponseEntity<Person>(person, HttpStatus.CREATED);
- */
-
-
-/*
-2
-public ResponseEntity<?> createNewPerson(@Valid @RequestBody Person person, BindingResult result) {
-        if (result.hasErrors()){
-            return new ResponseEntity<String>("Invalid Person Object", HttpStatus.BAD_REQUEST);
-        }
-        Person person1 = personService.saveOrUpdatePerson(person);
-        return new ResponseEntity<Person>(person, HttpStatus.CREATED);
-    }
- */
+// final Person Controller
