@@ -15,7 +15,9 @@ public class Person {
     private Long id;
    @NotBlank(message = "Person name is required")
     private String name;
+   @NotBlank(message ="Project Identifier is required")
    @Size(min=4,max =5, message = "please enter 4 to 5 characters")
+   @Column(updatable = false, unique = true)
     private String personIdentifier;
    @NotBlank(message = "desc is required")
     private String desc;
@@ -43,12 +45,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getBookIdentifier() {
+    public String getPersonIdentifier() {
         return personIdentifier;
     }
 
-    public void setBookIdentifier(String bookIdentifier) {
-        this.personIdentifier = bookIdentifier;
+    public void setPersonIdentifier(String personIdentifier) {
+        this.personIdentifier = personIdentifier;
     }
 
     public String getDesc() {
