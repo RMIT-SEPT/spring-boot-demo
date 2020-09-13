@@ -13,13 +13,13 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-   @NotBlank(message = "Person name is required")
+    @NotBlank(message = "Person name is required")
     private String name;
-   @NotBlank(message ="Project Identifier is required")
-   @Size(min=4,max =5, message = "please enter 4 to 5 characters")
-   @Column(updatable = false, unique = true)
+    @NotBlank(message ="Project Identifier is required")
+    @Size(min=4,max =5, message = "please enter 4 to 5 characters")
+    @Column(updatable = false, unique = true)
     private String personIdentifier;
-   @NotBlank(message = "desc is required")
+    @NotBlank(message = "desc is required")
     private String desc;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date start_date;
