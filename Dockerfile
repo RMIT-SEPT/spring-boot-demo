@@ -1,10 +1,10 @@
-FROM openjdk:8-jdk-alpine
-
-RUN mkdir /var/circleci-with-springboot
-
-ARG DEPENDENCY=build
-ADD ${DEPENDENCY}/libs/spring-boot-demo-0.0.1.jar /var/spring-boot-demo/springbootdemo.jar
-
-EXPOSE 8083
-
-ENTRYPOINT ["java","-jar","/var/spring-boot-demo/springbootdemo.jar"]
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
+MAINTAINER Brian Hannaway
+COPY pom.xml /build/
+COPY src /build/src/
+WORKDIR /build/
+RUN mvn package
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY --from=MAVEN_BUILD /build/target/docker-boot-intro-0.1.0.jar /app/
+ENTRYPOINT ["java", "-jar", "docker-boot-intro-0.1.0.jar"]
