@@ -54,7 +54,8 @@ jobs:
       - run:
           name: Push image
           command: |
-            eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin
+            ECR: 594973024332.dkr.ecr.us-east-1.amazonaws.com/springbootdemo
             docker push $FULL_IMAGE_NAME
 workflows:
   build-deploy-qa:
