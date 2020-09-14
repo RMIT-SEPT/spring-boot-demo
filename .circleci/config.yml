@@ -7,15 +7,17 @@ jobs:
   build_and_deploy:
     docker:
       - image: circleci/openjdk:8-jdk
-
+    environment:
+      ECR_REPOSITORY_NAME: springbootdemo
+      FULL_IMAGE_NAME: 594973024332.dkr.ecr.us-east-1.amazonaws.com/springbootdemo:latest
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Setup common environment variables
-          command: |
-            echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
-            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:latest"' >> $BASH_ENV
+#       - run:
+#           name: Setup common environment variables
+#           command: |
+#             echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
+#             echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:latest"' >> $BASH_ENV
 
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
